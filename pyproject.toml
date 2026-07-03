@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "literature-reviewer"
+version = "0.1.0"
+description = "Grounded Web of Science and Scopus literature review toolkit."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Literature Reviewer Maintainers"},
+]
+keywords = [
+    "literature review",
+    "web of science",
+    "scopus",
+    "systematic review",
+    "research",
+]
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+literature-review = "literature_reviewer.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/literature_reviewer",
+    "src/wos_search",
+    "src/scopus_search",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = [
+    "src/wos_search",
+    "src/scopus_search",
+]
+
+[tool.ruff.lint]
+select = ["B", "C4", "E", "F", "I", "N", "UP", "W"]
+ignore = ["E501", "UP045"]
