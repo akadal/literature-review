@@ -8,8 +8,12 @@ search, Scopus search, or source-grounded research brief.
 1. Load credentials from `.env`; never print API key values.
 2. Prefer both WoS and Scopus unless the user asks for one source.
 3. Use raw provider syntax when the user gives it; otherwise build a simple topic query:
-   - WoS: `TS=("topic")`
-   - Scopus: `TITLE-ABS-KEY("topic")`
+   - WoS: `TS=(word1 AND word2)`
+   - Scopus: `TITLE-ABS-KEY(word1 AND word2)`
+   Multi-word topics are AND-joined, never wrapped as an exact phrase: phrase-wrapping
+   silently collapses recall (`"blockchain tourism"` returns 2 Scopus / 1 WoS record;
+   `blockchain AND tourism` returns 774 / 95). For a deliberate phrase, quote it inside
+   the topic: `--topic '"digital natives"'`.
 4. Every article-level claim must be tied to evidence IDs from `articles.csv` or
    `evidence_groups.json`.
 5. Treat DOI matches across WoS and Scopus as strongest confirmation.

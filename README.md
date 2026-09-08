@@ -41,6 +41,11 @@ literature-review doctor
 literature-review search --topic "blockchain tourism" --year-range 2020-2026 --max-results 25
 ```
 
+A multi-word `--topic` is AND-joined (`TS=(blockchain AND tourism)`), not searched as an exact
+phrase, because phrase-wrapping silently collapses recall. Quote the topic yourself when you do
+want a phrase: `--topic '"digital natives"'`. Topics containing boolean operators, parentheses or
+wildcards are passed through untouched.
+
 Outputs are written under `output/literature_review/` by default:
 
 - `review.md`: grounded review report.
