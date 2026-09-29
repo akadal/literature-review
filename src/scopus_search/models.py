@@ -95,6 +95,9 @@ class ScopusArticle:
                     author_names.append(str(name))
             elif author:
                 author_names.append(str(author))
+        # STANDARD view omits the "author" list and only returns the first author as dc:creator.
+        if not author_names and entry.get("dc:creator"):
+            author_names.append(str(entry["dc:creator"]))
 
         affiliation_names: list[str] = []
         for affiliation in affiliations:
