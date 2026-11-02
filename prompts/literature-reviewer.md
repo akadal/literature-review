@@ -1,6 +1,6 @@
 # One-Prompt Literature Review Request
 
-Use `D:\repos\literature-review` as the literature reviewer system.
+Use this repository as the literature reviewer system.
 
 Task:
 

@@ -40,6 +40,6 @@ Then read:
 
 Ask Codex:
 
-> Use `D:\repos\literature-review` as the literature reviewer. Run both WoS and
+> Use this repository as the literature reviewer. Run both WoS and
 > Scopus for `<topic>`, cross-check DOI/title/year evidence, and write only claims
 > that are backed by evidence IDs. Report gaps and source-only records separately.
