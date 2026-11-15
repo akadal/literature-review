@@ -98,7 +98,12 @@ class ScopusResearcher:
                 break
 
             results = data.get("search-results", {})
-            entries = results.get("entry", []) or []
+            # An empty result set still comes back as one entry, {"error": "Result set was
+            # empty"}; it is not an article and must not be counted as one.
+            entries = [
+                e for e in (results.get("entry", []) or [])
+                if isinstance(e, dict) and "error" not in e
+            ]
 
             if start == 0:
                 total_records = self._safe_int(results.get("opensearch:totalResults", 0))
